@@ -14,6 +14,7 @@
 		05C4F10725687FA700145CB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05C4F10625687FA700145CB8 /* Assets.xcassets */; };
 		05C4F10A25687FA700145CB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05C4F10825687FA700145CB8 /* LaunchScreen.storyboard */; };
 		05C4F1122568811500145CB8 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4F1112568811500145CB8 /* Pokemon.swift */; };
+		05C4F114256884D900145CB8 /* PokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C4F113256884D900145CB8 /* PokemonViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		05C4F10925687FA700145CB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		05C4F10B25687FA700145CB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05C4F1112568811500145CB8 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		05C4F113256884D900145CB8 /* PokemonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				05C4F10825687FA700145CB8 /* LaunchScreen.storyboard */,
 				05C4F10B25687FA700145CB8 /* Info.plist */,
 				05C4F1112568811500145CB8 /* Pokemon.swift */,
+				05C4F113256884D900145CB8 /* PokemonViewController.swift */,
 			);
 			path = Pokedex;
 			sourceTree = "<group>";
@@ -142,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05C4F10225687FA600145CB8 /* ViewController.swift in Sources */,
+				05C4F114256884D900145CB8 /* PokemonViewController.swift in Sources */,
 				05C4F1122568811500145CB8 /* Pokemon.swift in Sources */,
 				05C4F0FE25687FA600145CB8 /* AppDelegate.swift in Sources */,
 				05C4F10025687FA600145CB8 /* SceneDelegate.swift in Sources */,

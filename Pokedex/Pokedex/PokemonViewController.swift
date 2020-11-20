@@ -6,4 +6,10 @@
 //  Copyright © 2020 Kat Berge. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+
+class PokemonViewController: UIViewController {
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var numberLabel: UILabel!
+}

@@ -45,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="1044.9275362318842" y="109.82142857142857"/>
         </scene>
-        <!--View Controller-->
+        <!--Pokemon View Controller-->
         <scene sceneID="8uX-Yk-OGe">
             <objects>
-                <viewController id="bGq-q1-C4f" sceneMemberID="viewController">
+                <viewController id="bGq-q1-C4f" customClass="PokemonViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pdy-83-Dvl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -71,6 +71,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="7a1-K9-BxS"/>
                     </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="MLq-aB-Wog" id="heZ-1H-ru1"/>
+                        <outlet property="numberLabel" destination="spk-yT-NPn" id="Y49-Nl-zfY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TsV-Bh-6dj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

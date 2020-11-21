@@ -30,5 +30,5 @@ struct PokemonType: Codable {
 
 struct PokemonTypeEntry: Codable {
     let slot: Int
-    let type: [PokemonType]
+    let type: PokemonType
 }

@@ -13,11 +13,7 @@ class ViewController: UITableViewController {
     
     @IBAction func createNote() {
         let _ = NoteManager.main.create()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        reload()
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,6 +29,10 @@ class ViewController: UITableViewController {
         cell.textLabel?.text = notes[indexPath.row].contents
         return cell
     }
-
+    
+    func reload() {
+        notes = NoteManager.main.getAllNotes()
+        self.tableView.reloadData()
+    }
 }
 

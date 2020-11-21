@@ -15,7 +15,7 @@ struct Note {
 }
 
 struct NoteManager {
-    var database: OpaquePointer!
+    @State private var database: OpaquePointer!
     
     static let main = NoteManager()
     
@@ -29,10 +29,10 @@ struct NoteManager {
         }
         
         do {
-            let databaseURL = try FileManager.default.url(for: .userDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("notes.sqlite3")
+            let databaseURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("notes.sqlite3")
             
             // open and make sure it was successful
-            if sqlite3_open(databaseURL.path, UnsafeMutablePointer(database)) == SQLITE_OK {
+            if sqlite3_open(databaseURL.path, &database) == SQLITE_OK {
                 // sqlite3 will automatically create rowid column
                 if sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS notes (contents TEXT)", nil, nil, nil) != SQLITE_OK {
                     print("Could not create table.")

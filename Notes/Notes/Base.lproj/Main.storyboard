@@ -38,7 +38,9 @@
                             <outlet property="delegate" destination="iZB-vz-iQN" id="Yfi-xe-qC5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="ded-ny-V1J"/>
+                    <navigationItem key="navigationItem" title="Notes" id="ded-ny-V1J">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lV5-jz-Gkb"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GRO-nU-97Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

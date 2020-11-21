@@ -10,6 +10,10 @@ import UIKit
 
 class ViewController: UITableViewController {
     var notes: [Note] = []
+    
+    @IBAction func createNote() {
+        let _ = NoteManager.main.create()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

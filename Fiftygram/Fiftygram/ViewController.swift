@@ -23,6 +23,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    // functionality for Sepia button
     @IBAction func applySepia() {
         // avoid crashing if there is no image
         guard let original = original else {
@@ -34,6 +35,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
         let output = filter?.outputImage
         imageView.image = UIImage(cgImage: self.context.createCGImage(output!, from: output!.extent)!)
+    }
+    
+    // functionality for Noir button
+    @IBAction func applyNoir() {
+        //
+    }
+    
+    // functionality for Vinatge button
+    @IBAction func applyVinatge() {
+        //
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

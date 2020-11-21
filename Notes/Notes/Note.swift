@@ -17,7 +17,12 @@ struct Note {
 struct NoteManager {
     var database: OpaquePointer!
     
-    mutating func connect() {
+    static let main = NoteManager()
+    
+    private init() {
+    }
+    
+    func connect() {
         // don't do this twice
         if database != nil {
             return
@@ -27,7 +32,7 @@ struct NoteManager {
             let databaseURL = try FileManager.default.url(for: .userDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("notes.sqlite3")
             
             // open and make sure it was successful
-            if sqlite3_open(databaseURL.path, &database) == SQLITE_OK {
+            if sqlite3_open(databaseURL.path, UnsafeMutablePointer(database)) == SQLITE_OK {
                 // sqlite3 will automatically create rowid column
                 if sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS notes (contents TEXT)", nil, nil, nil) != SQLITE_OK {
                     print("Could not create table.")
@@ -42,7 +47,7 @@ struct NoteManager {
         }
     }
     
-    mutating func create() -> Int {
+    func create() -> Int {
         connect()
         
         var statement: OpaquePointer!
@@ -61,7 +66,7 @@ struct NoteManager {
         return Int(sqlite3_last_insert_rowid(database))
     }
     
-    mutating func getAllNotes() -> [Note] {
+    func getAllNotes() -> [Note] {
         connect()
         var result: [Note] = []
         

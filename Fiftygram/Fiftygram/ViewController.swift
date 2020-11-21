@@ -24,33 +24,40 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     // functionality for Sepia button
-    @IBAction func applySepia() {
-        // avoid crashing if there is no image
-        guard let original = original else {
-            return
-        }
-        
-        let filter = CIFilter(name: "CISepiaTone")
+    @IBAction func applySepia() {let filter = CIFilter(name: "CISepiaTone")
         filter?.setValue(0.5, forKey: kCIInputIntensityKey)
-        filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
-        let output = filter?.outputImage
-        imageView.image = UIImage(cgImage: self.context.createCGImage(output!, from: output!.extent)!)
+        display(filter: filter!)
     }
     
     // functionality for Noir button
     @IBAction func applyNoir() {
-        //
+        let filter = CIFilter(name: "CIPhotoEffectNoir")
+        display(filter: filter!)
     }
     
     // functionality for Vinatge button
     @IBAction func applyVinatge() {
-        //
+        let filter = CIFilter(name: "CIPhotoEffectProcess")
+        display(filter: filter!)
+    }
+    
+    // helper function for filter functions' repeated code
+    func display(filter: CIFilter) {
+        // avoid crashing if there is no image
+        if original == nil {
+            return
+        }
+        
+        filter.setValue(CIImage(image: original!), forKey: kCIInputImageKey)
+        let output = filter.outputImage
+        imageView.image = UIImage(cgImage: self.context.createCGImage(output!, from: output!.extent)!)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         navigationController?.dismiss(animated: true, completion: nil)
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = image
+            original = image
         }
     }
 

@@ -9,6 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    let context = CIContext()
+    // save original photo user inputs
+    var original: UIImage?
     @IBOutlet var imageView: UIImageView!
     
     @IBAction func choosePhoto() {
@@ -18,6 +21,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             picker.sourceType = .photoLibrary
             navigationController?.present(picker, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func applySepia() {
+        // avoid crashing if there is no image
+        guard let original = original else {
+            return
+        }
+        
+        let filter = CIFilter(name: "CISepiaTone")
+        filter?.setValue(0.5, forKey: kCIInputIntensityKey)
+        filter?.setValue(CIImage(image: original), forKey: kCIInputImageKey)
+        let output = filter?.outputImage
+        imageView.image = UIImage(cgImage: self.context.createCGImage(output!, from: output!.extent)!)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

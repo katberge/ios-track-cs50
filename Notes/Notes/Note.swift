@@ -8,6 +8,7 @@
 
 import Foundation
 import SQLite3
+import SwiftUI
 
 struct Note {
     let id: Int

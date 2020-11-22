@@ -82,4 +82,23 @@ class NoteManager {
         sqlite3_finalize(statement)
         return result
     }
+    
+    func save(note: Note) {
+        connect()
+        
+        var statment: OpaquePointer!
+        if sqlite3_prepare(database, "UPDATE notes SET contents = ? WHERE rowid = ?", -1, &statment, nil) != SQLITE_OK {
+            print("Could not create update statement.")
+        }
+        
+        // 1 indexed, not 0 like normal
+        sqlite3_bind_text(statment, 1, NSString(string: note.contents).utf8String, -1, nil)
+        sqlite3_bind_int(statment, 2, Int32(note.id))
+        
+        if sqlite3_step(statment) != SQLITE_DONE {
+            print("Could not update")
+        }
+        
+        sqlite3_finalize(statment)
+    }
 }

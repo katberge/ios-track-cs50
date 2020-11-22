@@ -8,33 +8,31 @@
 
 import Foundation
 import SQLite3
-import SwiftUI
 
 struct Note {
     let id: Int
     var contents: String
 }
 
-struct NoteManager {
-    @State private var database: OpaquePointer!
+class NoteManager {
+    var database: OpaquePointer!
     
+    // make note manager a singleton
     static let main = NoteManager()
-    
     private init() {
     }
     
     func connect() {
-        // don't do this twice
+        // do not connect twice
         if database != nil {
             return
         }
         
-        do {
+        do  {
             let databaseURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("notes.sqlite3")
             
-            // open and make sure it was successful
             if sqlite3_open(databaseURL.path, &database) == SQLITE_OK {
-                // sqlite3 will automatically create rowid column
+                // automatically creates autoincrement rowid column
                 if sqlite3_exec(database, "CREATE TABLE IF NOT EXISTS notes (contents TEXT)", nil, nil, nil) != SQLITE_OK {
                     print("Could not create table.")
                 }
@@ -42,9 +40,10 @@ struct NoteManager {
             else {
                 print("Could not connect.")
             }
+            
         }
-        catch let error {
-            print("\(error): Could not create database.")
+        catch {
+            print("Could not create database.")
         }
     }
     
@@ -52,15 +51,13 @@ struct NoteManager {
         connect()
         
         var statement: OpaquePointer!
-        
-        // give new notes default text of "New note"
         if sqlite3_prepare_v2(database, "INSERT INTO notes (contents) VALUES ('New note')", -1, &statement, nil) != SQLITE_OK {
             print("Could not create query.")
             return -1
         }
+        
         if sqlite3_step(statement) != SQLITE_DONE {
             print("Could not insert note.")
-            return -1
         }
         
         sqlite3_finalize(statement)
@@ -69,12 +66,12 @@ struct NoteManager {
     
     func getAllNotes() -> [Note] {
         connect()
-        var result: [Note] = []
         
+        var result: [Note] = []
         var statement: OpaquePointer!
         
         if sqlite3_prepare_v2(database, "SELECT rowid, contents FROM notes", -1, &statement, nil) != SQLITE_OK {
-            print("Error creating select.")
+            print("Could not perform select.")
             return []
         }
         

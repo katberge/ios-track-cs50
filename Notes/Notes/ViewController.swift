@@ -16,6 +16,11 @@ class ViewController: UITableViewController {
         reload()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        reload()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
